@@ -1,0 +1,55 @@
+# Setting Up Your Environment for OpenAI Integration
+
+Before running the code, you need to set up your environment with the required API key and dependencies. Follow these steps:
+
+## 1. Create a .env file
+
+Create a file named `.env` in the same directory as your Python script with the following content:
+
+```
+OPENAI_API_KEY=your_api_key_here
+```
+
+Replace `your_api_key_here` with your actual OpenAI API key. You can get an API key by:
+1. Going to [OpenAI's platform](https://platform.openai.com/)
+2. Creating an account if you don't have one
+3. Navigating to the API keys section
+4. Creating a new API key
+
+## 2. Install Required Packages
+
+Install the required Python packages by running:
+
+```bash
+pip install openai pandas numpy matplotlib seaborn nltk python-dotenv ipython
+```
+
+## 3. Set up NLTK Data
+
+The first time you run the script, it will automatically download the required NLTK data. Alternatively, you can pre-download it with:
+
+```python
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+```
+
+## 4. Cost Considerations
+
+Please note that using the OpenAI API incurs costs based on the number of tokens processed. The script processes multiple prompts per medical note, which can add up. The code is set up to use a small sample by default to keep costs down during testing.
+
+To adjust the number of samples processed, modify the `sample_size` variable in the `main()` function.
+
+## 5. Models
+
+The code defaults to using the `gpt-4o` model, which provides excellent results for medical text simplification. If you want to use a different model (such as `gpt-3.5-turbo` for lower costs), you can modify the `model` parameter in the `call_openai_api()` function.
+
+## 6. Running the Code
+
+Once your environment is set up, you can run the script with:
+
+```bash
+python medical_notes_simplification.py
+```
+
+The script will process the sample medical notes, send them to the OpenAI API using different prompting techniques, and save the results to a JSON file. It will also display a sample comparison of the simplification results.
